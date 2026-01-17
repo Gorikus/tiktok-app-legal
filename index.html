@@ -8,7 +8,7 @@
 
 <p>This is a web service for managing and publishing content using the official TikTok API.</p>
 
-<p>Contact: gorik_7452@mail.ru</p>
+<p>Contact1: gorik_7452@mail.ru</p>
 
 <p>
 <a href="terms.html">Terms of Service</a><br>
@@ -34,7 +34,7 @@
         const authUrl = "https://www.tiktok.com/v2/auth/authorize/" +
             "?client_key=" + CLIENT_KEY +
             "&response_type=code" +
-            "&scope=user.info.basic,video.publish" +
+            "&scope=user.info.basic,video.upload,video.publish" +
             "&redirect_uri=" + encodeURIComponent(REDIRECT_URI) +
             "&state=123";
         window.location.href = authUrl;
