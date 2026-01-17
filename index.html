@@ -16,13 +16,38 @@
 </p>
 
 <hr>
+<h2>TikTok Authorization</h2>
 
-<!-- Ссылка для авторизации пользователя на TikTok -->
-<p>
-<a href="https://www.tiktok.com/auth/authorize/?client_key=sbawncdhv4cuq62wdm&response_type=code&scope=user.info.basic,video.publish&redirect_uri=https://gorikus.github.io/tiktok-app-legal/&state=123">
-Login with TikTok
-</a>
-</p>
+<button id="loginBtn">Login with TikTok</button>
+
+<div id="result" style="margin-top: 20px; padding: 10px; background: #f0f0f0; display: none;">
+    <h3>Authorization Code:</h3>
+    <code id="codeValue" style="word-break: break-all;"></code>
+    <p><small>Скопируйте этот код и используйте в скрипте для получения токена</small></p>
+</div>
+
+<script>
+    const CLIENT_KEY = "sbawncdhv4cuq62wdm";
+    const REDIRECT_URI = "https://gorikus.github.io/tiktok-app-legal/";
+    
+    document.getElementById('loginBtn').addEventListener('click', function() {
+        const authUrl = "https://www.tiktok.com/v2/auth/authorize/" +
+            "?client_key=" + CLIENT_KEY +
+            "&response_type=code" +
+            "&scope=user.info.basic,video.publish" +
+            "&redirect_uri=" + encodeURIComponent(REDIRECT_URI) +
+            "&state=123";
+        window.location.href = authUrl;
+    });
+    
+    // Проверяем, есть ли code в URL после редиректа
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+    if (code) {
+        document.getElementById('result').style.display = 'block';
+        document.getElementById('codeValue').textContent = code;
+    }
+</script>
 
 </body>
 </html>
